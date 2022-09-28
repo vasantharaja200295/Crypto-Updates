@@ -1,0 +1,10 @@
+#:import utils kivy.utils
+<news_item>:
+    md_bg_color:utils.get_color_from_hex(app.secondary_background)
+    size_hint:(1,.15)
+    on_press:print(root.news_url)
+    radius:[10,10,10,10]
+    MDLabel:
+        text:root.news_text
+        halign:'left'
+        padding:10,0

@@ -1,0 +1,69 @@
+# Welcome Screen
+#:import utils kivy.utils
+MDScreen:
+    name:'welcome'
+    MDFloatLayout:
+        md_bg_color:utils.get_color_from_hex(app.primary_color)
+        FitImage:
+            source:"logo.png"
+            radius: [20,20,20,20]
+            pos_hint:{"center_x":.2, "center_y":.9}
+            size_hint:.25,.1
+        MDLabel:
+            text:'Crypto Updates'
+            font_size:30
+            pos_hint:{"center_x":.35, "center_y":.8}
+            halign:"center"
+            font_name:"Poppins-SemiBold.ttf"
+            theme_text_color:"Custom"
+            text_color:utils.get_color_from_hex(app.accent_color)
+        MDLabel:
+            text:'Get Latest Updates on Crypto'
+            font_size:18
+            pos_hint:{"center_x":.39, "center_y":.74}
+            halign:"center"
+            font_name:"Poppins-Light.ttf"
+            theme_text_color:"Custom"
+            text_color:utils.get_color_from_hex(app.secondary_text_color)
+
+        Image:
+            source:"man with pc illustration .png"
+            pos_hint:{"center_x":.5, "center_y":.45}
+            size_hint:.9,.9
+
+        MDLabel:
+            text:'Lets get Started....'
+            font_size:16
+            pos_hint:{"center_x":.22, "center_y":.18}
+            halign:"center"
+            font_name:"Poppins-Light.ttf"
+            theme_text_color:"Custom"
+            text_color:utils.get_color_from_hex(app.secondary_text_color)
+
+        MDFloatLayout:
+            md_bg_color:utils.get_color_from_hex(app.secondary_text_color)
+            size_hint:.97,.003
+            pos_hint:{"center_x":.5, "center_y":.15}
+
+        MDBoxLayout:
+            padding:10
+            spacing:10
+            pos_hint:{"center_x":.5, "center_y":.08}
+            size_hint:1,.1
+
+            MDFlatButton:
+                text:"Sign up"
+                size_hint:.5,.9
+                font_size:20
+                font_name:"Poppins-Medium.ttf"
+                theme_text_color:"Custom"
+                text_color:utils.get_color_from_hex(app.secondary_text_color)
+                on_press:app.change_screen("sign_up")
+            MDRaisedButton:
+                text:"Login"
+                size_hint:.5,.9
+                md_bg_color:utils.get_color_from_hex(app.accent_color)
+                font_size:20
+                font_name:"Poppins-Medium.ttf"
+                on_press:app.change_screen("login")
+

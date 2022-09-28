@@ -1,0 +1,323 @@
+# Main Screen
+#:import utils kivy.utils
+MDScreen:
+    name:"main"
+    MDFloatLayout:
+
+        MDBottomNavigation:
+            panel_color:utils.get_color_from_hex(app.primary_color)
+            MDBottomNavigationItem:
+                name:"Home"
+                icon:"home"
+                text:"Home"
+                MDFloatLayout:
+                    md_bg_color:utils.get_color_from_hex(app.primary_color)
+                    MDLabel:
+                        text:'News'
+                        font_size:30
+                        pos_hint:{"center_x":.12, "center_y":.95}
+                        halign:"center"
+                        font_name:"Poppins-SemiBold.ttf"
+                        theme_text_color:"Custom"
+                        text_color:utils.get_color_from_hex(app.accent_color)
+
+                    MDBoxLayout:
+                        size_hint:(1,.89)
+                        ScrollView:
+                            do_scroll_x: False
+                            do_scroll_y: True
+                            bar_color:0,0,0,0
+                            GridLayout:
+                                id:news_content
+                                size_hint_y: None
+                                padding: 5, 10
+                                spacing:0,10
+                                row_default_height:80
+                                cols:1
+                                height:self.minimum_height
+                                width:self.minimum_width
+            MDBottomNavigationItem:
+                name:"Activity"
+                icon:"trending-up"
+                text:"Market"
+
+                MDFloatLayout:
+                    md_bg_color:utils.get_color_from_hex(app.primary_color)
+                    MDLabel:
+                        text:'Trending'
+                        font_size:30
+                        pos_hint:{"center_x":.19, "center_y":.96}
+                        halign:"center"
+                        font_name:"Poppins-SemiBold.ttf"
+                        theme_text_color:"Custom"
+                        text_color:utils.get_color_from_hex(app.accent_color)
+                    MDIconButton:
+                        icon:"reload"
+                        pos_hint:{"center_x":.95, "center_y":.95}
+                        on_release:app.reload_coin_base()
+
+                    MDFloatLayout:
+                        size_hint:1,.05
+                        pos_hint:{"center_x":.5, "center_y":.9}
+                        MDLabel:
+                            text:"#"
+                            halign:"center"
+                            pos_hint:{"center_x":.05, "center_y":.5}
+                            font_name:"Poppins-Light.ttf"
+                        MDLabel:
+                            text:"Coin"
+                            halign:"center"
+                            pos_hint:{"center_x":.25, "center_y":.5}
+                            font_name:"Poppins-Light.ttf"
+                        MDLabel:
+                            text:"Price"
+                            halign:"center"
+                            pos_hint:{"center_x":.65, "center_y":.5}
+                            font_name:"Poppins-Light.ttf"
+                        MDLabel:
+                            id:update_time_text
+                            text:app.update_time
+                            halign:"center"
+                            pos_hint:{"center_x":.9, "center_y":.5}
+                            font_name:"Poppins-Light.ttf"
+
+                    MDBoxLayout:
+                        md_bg_color:utils.get_color_from_hex(app.primary_color)
+                        size_hint:(1,.85)
+                        ScrollView:
+                            do_scroll_x: False
+                            do_scroll_y: True
+                            bar_color:0,0,0,0
+                            GridLayout:
+                                id:coin_layout
+                                size_hint_y: None
+                                padding: 5, 10
+                                spacing:0,10
+                                row_default_height:80
+                                cols:1
+                                height:self.minimum_height
+                                width:self.minimum_width
+            MDBottomNavigationItem:
+                name:"portfolio"
+                icon:"briefcase"
+                text:"Portfolio"
+                MDFloatLayout:
+                    md_bg_color:utils.get_color_from_hex(app.primary_color)
+                    MDLabel:
+                        text:'Portfolio'
+                        font_size:30
+                        pos_hint:{"center_x":.19, "center_y":.95}
+                        halign:"center"
+                        font_name:"Poppins-SemiBold.ttf"
+                        theme_text_color:"Custom"
+                        text_color:utils.get_color_from_hex(app.accent_color)
+                    MDIconButton:
+                        icon:"plus"
+                        pos_hint:{"center_x":.95, "center_y":.95}
+                        on_release:app.show_confirmation_dialog()
+
+                    MDCard:
+                        md_bg_color:utils.get_color_from_hex(app.accent_color)
+                        size_hint:(.95,.2)
+                        pos_hint:{"center_x":.5, "center_y":.78}
+                        radius:20,20,20,20
+                        MDFloatLayout:
+                            MDLabel:
+                                id:net_holdings
+                                text:"$0.00"
+                                font_size:30
+                                halign:"center"
+                                font_name:"Poppins-SemiBold.ttf"
+                                pos_hint:{"center_x":.5, "center_y":.45}
+                            MDLabel:
+                                text:"Net Holdings:"
+                                font_size:18
+                                halign:"center"
+                                font_name:"Poppins-Medium.ttf"
+                                pos_hint:{"center_x":.2, "center_y":.85}
+
+                    MDFloatLayout:
+                        md_bg_color:utils.get_color_from_hex(app.primary_color)
+                        size_hint:1,.06
+                        pos_hint:{"center_x":.5, "center_y":.64}
+                        MDLabel:
+                            text:"#"
+                            halign:"center"
+                            pos_hint:{"center_x":.05, "center_y":.5}
+                            font_name:"Poppins-Light.ttf"
+                        MDLabel:
+                            text:"Coin"
+                            halign:"center"
+                            pos_hint:{"center_x":.25, "center_y":.5}
+                            font_name:"Poppins-Light.ttf"
+                        MDLabel:
+                            text:"Price"
+                            halign:"center"
+                            pos_hint:{"center_x":.58, "center_y":.5}
+                            font_name:"Poppins-Light.ttf"
+                        MDLabel:
+                            text:"Holdings"
+                            halign:"center"
+                            pos_hint:{"center_x":.85, "center_y":.5}
+                            font_name:"Poppins-Light.ttf"
+
+                    MDBoxLayout:
+                        size_hint:(1,.62)
+                        ScrollView:
+                            do_scroll_x: False
+                            do_scroll_y: True
+                            bar_color:0,0,0,0
+                            GridLayout:
+                                id:portfolio_layout
+                                size_hint_y: None
+                                padding: 5, 10
+                                spacing:0,10
+                                row_default_height:80
+                                cols:1
+                                height:self.minimum_height
+                                width:self.minimum_width
+
+            MDBottomNavigationItem:
+                name:"Settings"
+                icon:"cog"
+                text:"Settings"
+                MDFloatLayout:
+                    md_bg_color:utils.get_color_from_hex(app.primary_color)
+                    MDLabel:
+                        text:'Settings'
+                        font_size:30
+                        pos_hint:{"center_x":.19, "center_y":.95}
+                        halign:"center"
+                        font_name:"Poppins-SemiBold.ttf"
+                        theme_text_color:"Custom"
+                        text_color:utils.get_color_from_hex(app.accent_color)
+                    MDLabel:
+                        text:'Currency:'
+                        font_size:20
+                        pos_hint:{"center_x":.16, "center_y":.85}
+                        halign:"center"
+                        font_name:"Poppins-Medium.ttf"
+                        theme_text_color:"Custom"
+                        text_color:utils.get_color_from_hex(app.accent_color)
+# ------------------------ Currency USD ------------------------------------------------ #
+                    MDCheckbox:
+                        id:usd
+                        pos_hint:{"center_x":.12, "center_y":.78}
+                        size_hint:.2,.1
+                        active: True
+                        color:utils.get_color_from_hex(app.primary_text_color)
+                        color_active:utils.get_color_from_hex(app.accent_color)
+                        group:"currency"
+                        on_release:app.handle_currency_change("USD")
+                    MDLabel:
+                        text:"United States Dollar"
+                        font_size:16
+                        pos_hint:{"center_x":.48, "center_y":.78}
+                        halign:"center"
+                        font_name:"Poppins-Regular.ttf"
+                        theme_text_color:"Custom"
+                        text_color:utils.get_color_from_hex(app.primary_text_color)
+# ------------------------ Currency EUR ------------------------------------------------ #
+                    MDCheckbox:
+                        id:eur
+                        pos_hint:{"center_x":.12, "center_y":.71}
+                        size_hint:.2,.1
+                        color:utils.get_color_from_hex(app.primary_text_color)
+                        color_active:utils.get_color_from_hex(app.accent_color)
+                        group:"currency"
+                        on_release:app.handle_currency_change("EUR")
+                    MDLabel:
+                        text:"Euro"
+                        font_size:16
+                        pos_hint:{"center_x":.32, "center_y":.71}
+                        halign:"center"
+                        font_name:"Poppins-Regular.ttf"
+                        theme_text_color:"Custom"
+                        text_color:utils.get_color_from_hex(app.primary_text_color)
+# ------------------------ Currency JPY ------------------------------------------------ #
+                    MDCheckbox:
+                        id:jpy
+                        pos_hint:{"center_x":.12, "center_y":.62}
+                        size_hint:.2,.1
+                        color:utils.get_color_from_hex(app.primary_text_color)
+                        color_active:utils.get_color_from_hex(app.accent_color)
+                        group:"currency"
+                        on_release:app.handle_currency_change("JPY")
+                    MDLabel:
+                        text:"Japanese Yen"
+                        font_size:16
+                        pos_hint:{"center_x":.42, "center_y":.62}
+                        halign:"center"
+                        font_name:"Poppins-Regular.ttf"
+                        theme_text_color:"Custom"
+                        text_color:utils.get_color_from_hex(app.primary_text_color)
+# ---------------------------------------------------------------------------------------- #
+                    MDLabel:
+                        text:'Coin Price Change in:'
+                        font_size:20
+                        pos_hint:{"center_x":.3, "center_y":.55}
+                        halign:"center"
+                        font_name:"Poppins-Medium.ttf"
+                        theme_text_color:"Custom"
+                        text_color:utils.get_color_from_hex(app.accent_color)
+
+# ------------------------ IN 1h ------------------------------------------------ #
+                    MDCheckbox:
+                        id:_1h_check
+                        pos_hint:{"center_x":.12, "center_y":.492}
+                        size_hint:.2,.1
+                        color:utils.get_color_from_hex(app.primary_text_color)
+                        color_active:utils.get_color_from_hex(app.accent_color)
+                        group:"update_time"
+                        on_release:app.handle_Update_time("1h")
+                    MDLabel:
+                        text:"1h"
+                        font_size:16
+                        pos_hint:{"center_x":.32, "center_y":.492}
+                        halign:"center"
+                        font_name:"Poppins-Regular.ttf"
+                        theme_text_color:"Custom"
+                        text_color:utils.get_color_from_hex(app.primary_text_color)
+# ------------------------ IN 24h ------------------------------------------------ #
+                    MDCheckbox:
+                        id:_24h_check
+                        pos_hint:{"center_x":.12, "center_y":.41}
+                        size_hint:.2,.1
+                        active: True
+                        color:utils.get_color_from_hex(app.primary_text_color)
+                        color_active:utils.get_color_from_hex(app.accent_color)
+                        group:"update_time"
+                        on_release:app.handle_Update_time("24h")
+                    MDLabel:
+                        text:"24h"
+                        font_size:16
+                        pos_hint:{"center_x":.32, "center_y":.41}
+                        halign:"center"
+                        font_name:"Poppins-Regular.ttf"
+                        theme_text_color:"Custom"
+                        text_color:utils.get_color_from_hex(app.primary_text_color)
+# ------------------------ IN 7d ------------------------------------------------ #
+                    MDCheckbox:
+                        id:_7d_check
+                        pos_hint:{"center_x":.12, "center_y":.32}
+                        size_hint:.2,.1
+                        color:utils.get_color_from_hex(app.primary_text_color)
+                        color_active:utils.get_color_from_hex(app.accent_color)
+                        group:"update_time"
+                        on_release:app.handle_Update_time("7d")
+                    MDLabel:
+                        text:"7d"
+                        font_size:16
+                        pos_hint:{"center_x":.32, "center_y":.32}
+                        halign:"center"
+                        font_name:"Poppins-Regular.ttf"
+                        theme_text_color:"Custom"
+                        text_color:utils.get_color_from_hex(app.primary_text_color)
+                    MDRaisedButton:
+                        text:"Log Out"
+                        size_hint:.9,.07
+                        md_bg_color:utils.get_color_from_hex(app.accent_color)
+                        font_size:20
+                        font_name:"Poppins-Medium.ttf"
+                        on_press:app.logout_user()
+                        pos_hint:{"center_x":.5, "center_y":.2}

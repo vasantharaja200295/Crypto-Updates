@@ -1,0 +1,135 @@
+# Sign Up Screen
+#:import utils kivy.utils
+MDScreen:
+    name:"sign_up"
+    MDFloatLayout:
+        md_bg_color:utils.get_color_from_hex(app.primary_color)
+        FitImage:
+            source:"logo.png"
+            radius: [20,20,20,20]
+            pos_hint:{"center_x":.2, "center_y":.9}
+            size_hint:.25,.1
+        MDLabel:
+            text:'Crypto Updates'
+            font_size:30
+            pos_hint:{"center_x":.35, "center_y":.8}
+            halign:"center"
+            font_name:"Poppins-SemiBold.ttf"
+            theme_text_color:"Custom"
+            text_color:utils.get_color_from_hex(app.accent_color)
+        MDLabel:
+            text:'Sign Up To Continue..'
+            font_size:20
+            pos_hint:{"center_x":.33, "center_y":.65}
+            halign:"center"
+            font_name:"Poppins-Medium.ttf"
+            theme_text_color:"Custom"
+            text_color:utils.get_color_from_hex(app.primary_text_color)
+
+        MDLabel:
+            text:'W e l c o m e'
+            font_size:27
+            pos_hint:{"center_x":.27, "center_y":.72}
+            halign:"center"
+            font_name:"Poppins-Light.ttf"
+            theme_text_color:"Custom"
+            text_color:utils.get_color_from_hex(app.accent_color)
+# Email textbox ############################################################
+    MDFloatLayout:
+        orientation:"vertical"
+        size_hint:1,.1
+        pos_hint:{"center_x":.5, "center_y":.55}
+        TextInput:
+            id:email
+            hint_text:"Email"
+            hint_text_color:utils.get_color_from_hex(app.primary_text_color)
+            cursor_width:2
+            cursor_color:utils.get_color_from_hex(app.accent_color)
+            font_name:"Poppins-Regular.ttf"
+            font_size:20
+            multiline:False
+            pos_hint:{"center_x":.5, "center_y":.55}
+            foreground_color:1,1,1,1
+            background_color:1,1,1,0
+            size_hint:.9,.58
+        MDFloatLayout:
+            md_bg_color:utils.get_color_from_hex(app.secondary_text_color)
+            size_hint:.9,.03
+            pos_hint:{"center_x":.5, "center_y":.2}
+##################################################################
+# Password TEXTBOX ##############################################
+    MDFloatLayout:
+        orientation:"vertical"
+        size_hint:1,.1
+        pos_hint:{"center_x":.5, "center_y":.44}
+        TextInput:
+            id:pwd
+            hint_text:"Password"
+            hint_text_color:utils.get_color_from_hex(app.primary_text_color)
+            cursor_width:2
+            cursor_color:utils.get_color_from_hex(app.accent_color)
+            font_name:"Poppins-Regular.ttf"
+            font_size:20
+            multiline:False
+            pos_hint:{"center_x":.5, "center_y":.55}
+            foreground_color:1,1,1,1
+            background_color:1,1,1,0
+            size_hint:.9,.58
+            password:True
+        MDFloatLayout:
+            md_bg_color:utils.get_color_from_hex(app.secondary_text_color)
+            size_hint:.9,.03
+            pos_hint:{"center_x":.5, "center_y":.2}
+############################################################################
+# Confirm Password TEXTBOX ##############################################
+    MDFloatLayout:
+        orientation:"vertical"
+        size_hint:1,.1
+        pos_hint:{"center_x":.5, "center_y":.33}
+        TextInput:
+            id: confirm_password
+            hint_text:"Confirm Password"
+            hint_text_color:utils.get_color_from_hex(app.primary_text_color)
+            cursor_width:2
+            cursor_color:utils.get_color_from_hex(app.accent_color)
+            font_name:"Poppins-Regular.ttf"
+            font_size:20
+            multiline:False
+            pos_hint:{"center_x":.5, "center_y":.55}
+            foreground_color:1,1,1,1
+            background_color:1,1,1,0
+            size_hint:.9,.58
+            password:True
+        MDFloatLayout:
+            md_bg_color:utils.get_color_from_hex(app.secondary_text_color)
+            size_hint:.9,.03
+            pos_hint:{"center_x":.5, "center_y":.2}
+############################################################################
+
+    MDRaisedButton:
+        text:"Sign Up"
+        size_hint:.9,.07
+        md_bg_color:utils.get_color_from_hex(app.accent_color)
+        font_size:20
+        font_name:"Poppins-Medium.ttf"
+        on_press:app.register_user(email.text,pwd.text,confirm_password.text)
+        pos_hint:{"center_x":.5, "center_y":.2}
+################--Sign up text button--#####################################
+    MDLabel:
+        text:"Already have an account "
+        font_size:16
+        pos_hint:{"center_x":.43, "center_y":.12}
+        halign:"center"
+        font_name:"Poppins-Regular.ttf"
+        theme_text_color:"Custom"
+        text_color:utils.get_color_from_hex(app.primary_text_color)
+    MDTextButton:
+        text:"Login"
+        halign:"center"
+        font_name:"Poppins-Regular.ttf"
+        theme_text_color:"Custom"
+        text_color:utils.get_color_from_hex(app.accent_color)
+        underline:True
+        pos_hint:{"center_x":.73, "center_y":.12}
+        on_press:app.change_screen("login")
+###################################################################
